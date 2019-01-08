@@ -26,7 +26,11 @@
 
 namespace PrestaShopBundle\Form\Admin\Type;
 
+use Symfony\Component\Form\ChoiceList\View\ChoiceView;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -47,6 +51,29 @@ class YesAndNoChoiceType extends TranslatorAwareType
             'required' => false,
             'choice_translation_domain' => false,
         ]);
+    }
+
+    public function buildView(FormView $view, FormInterface $form, array $options)
+    {
+        if (isset($options['attr']['placeholder'])) {
+            $placeholderChoiceView = new ChoiceView(
+                '',
+                '',
+                $options['attr']['placeholder'],
+                [
+                    'disabled' => true,
+                    'selected' => true,
+                    'hidden' => true,
+                ]
+            );
+
+            $view->vars['choices'] = array_merge(
+                [
+                    $placeholderChoiceView,
+                ],
+                $view->vars['choices']
+            );
+        }
     }
 
     /**
