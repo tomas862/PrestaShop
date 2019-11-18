@@ -54,6 +54,7 @@ use PrestaShop\PrestaShop\Core\Hook\HookDispatcherInterface;
 use PrestaShopBundle\Form\Admin\Type\DateRangeType;
 use PrestaShopBundle\Form\Admin\Type\SearchAndResetType;
 use PrestaShopBundle\Form\Admin\Type\YesAndNoChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
@@ -285,6 +286,14 @@ final class OrderGridDefinitionFactory extends AbstractGridDefinitionFactory
         $filters = new FilterCollection();
 
         $filters
+            ->add((new Filter('orders_bulk', CheckboxType::class))
+                ->setTypeOptions([
+                    'required' => false,
+                    'attr' => [
+                    ]
+                ])
+                ->setAssociatedColumn('orders_bulk')
+            )
             ->add((new Filter('id_order', TextType::class))
                 ->setTypeOptions([
                     'required' => false,
