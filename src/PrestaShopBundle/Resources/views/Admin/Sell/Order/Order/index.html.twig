@@ -46,14 +46,7 @@
   {% block order_grid_row %}
     <div class="row">
       <div class="col-12">
-        {% embed '@PrestaShop/Admin/Common/Grid/grid_panel.html.twig' with {'grid': orderGrid} %}
-          {% block grid_view_block %}
-            {% embed '@PrestaShop/Admin/Common/Grid/grid.html.twig' with {'grid': orderGrid} %}
-              {% block grid_bulk_actions_select_all %}
-              {% endblock %}
-            {% endembed %}
-          {% endblock %}
-        {% endembed %}
+        {% include '@PrestaShop/Admin/Common/Grid/grid_panel.html.twig' with {'grid': orderGrid} %}
       </div>
     </div>
   {% endblock %}

@@ -34,13 +34,11 @@
                 {{ include('@PrestaShop/Admin/Common/Grid/Blocks/bulk_actions.html.twig', {'grid': grid}) }}
               </div>
             </div>
-            {% block grid_bulk_actions_select_all %}
-              <div class="row">
-                  <div class="col-sm">
-                    {{ include('@PrestaShop/Admin/Common/Grid/Blocks/bulk_actions_select_all.html.twig', {'grid': grid}) }}
-                  </div>
+            <div class="row">
+              <div class="col-sm">
+                {{ include('@PrestaShop/Admin/Common/Grid/Blocks/bulk_actions_select_all.html.twig', {'grid': grid}) }}
               </div>
-            {% endblock %}
+            </div>
           </div>
         {% endblock %}
       </div>
